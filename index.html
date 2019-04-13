@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" src="css/normalize.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <header class="navbar">
+      <h1 class="navbar__header">CHECK <span>YO'</span> SELF</h1>
+        <img class="navbar__button" type="button" src="check-yo-self-icons/search.svg"/>
+      <input class="navbar__input" type="text" name="search" placeholder="Search"/>  
+    </header>
+    <main class="container">
+      <aside class="sidebar">
+        <form class="sidebar__form1">
+          <label for="sidebar__form1--label">Task Title</label>
+          <input class="sidebar__form1--input" type="text"/>
+  <!--           <article class="sidebar__list">
+            <img class="sidebar__img"/>
+            <p class="sidebar__list--item1 item"></p>
+            <img class="sidebar__img"/>
+            <p class="sidebar__list--item2 item"></p>
+            <img class="sidebar__img"/>
+            <p class="sidebar__list--item3 item"></p>
+          </article> -->
+        </form>
+        <form class="sidebar__form2">
+          <label for="sidebar-form2--label">Task Item</label>
+          <input class="sidebar__form2--input" type="text"/>
+          <button class="sidebar__form2--button1" type="button" src="check-yo-self-icons/add_icon.svg"/>
+          <button class="sidebar__form2--button2" type="button">Make Task List</button>
+          <button class="sidebar__form2--button3" type="button">Clear All</button>
+        </form>
+        <button class="sidebar__form2--button4" type="button">Filter by Urgency</button>
+      </aside>
+      <section class="todo">
+      </section>
+    </main>
+  </body>
+  <script src="./todo-list.js"></script>
+  <script src="./main.js"></script>
+</html>
