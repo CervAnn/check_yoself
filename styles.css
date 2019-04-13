@@ -28,7 +28,7 @@ span {
   height: 45px;
   padding: 5px;
   border: 0;
-  width: 70%;
+  width: 80%;
   display: flex;
 }
 
@@ -61,7 +61,7 @@ aside {
 }
 
 label {
-  margin: 10px;
+  margin: 0 10px;
   color: lightgrey;
 }
 
@@ -72,6 +72,10 @@ label {
 
 .sidebar__form2 {
   border-bottom: 2px solid #3C6577;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .sidebar__form1--input,
@@ -80,6 +84,13 @@ label {
   margin: 5px 10px;
   width: 90%;
   border-color: #1F1F3D;
+  font-size: 20px;
+  vertical-align: middle
+}
+
+.sidebar__form2--input {
+  width: 77%;
+  margin-right: 0;
 }
 
 .sidebar__form2--button2,
@@ -103,8 +114,6 @@ label {
 
 .sidebar__form2--image {
   background-color: #1F1F3D;
-  filter: invert(.5);
-
 }
 
 .todo {
