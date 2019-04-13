@@ -1,16 +1,16 @@
 * {
-  font-family: Open Sans, sans-serif;
   box-sizing: border-box;
+  font-family: Open Sans, sans-serif;
   margin: 0;
   padding: 0;
 }
 
 header {
+  align-items: center;
   background-color: #1F1F3D;
   color: #ffffff;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .navbar__header,
@@ -23,11 +23,11 @@ span {
 }
 
 .navbar__input {
-  height: 30px;
-  width: 30%;
   border-radius: 2%;
-  padding: 5px;
   font-size: 15px;
+  height: 30px;
+  padding: 5px;
+  width: 30%;
 }
 
 main {
@@ -35,21 +35,31 @@ main {
 }
 
 aside {
-  width: 30%;
-  height: 100%;
-  flex-wrap: wrap;
   background-color: #587A8A;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 30%;
+}
+
+label {
+  margin: 5px;
 }
 
 .sidebar__form1--input,
 .sidebar__form2--input {
-  width: 90%;
   height: 35px;
+  margin: 5px 10px;
+  width: 90%;
 }
 
 .sidebar__form2--button2,
 .sidebar__form2--button3 {
   background-color: #1F1F3D;
+  color: #ffffff;
+  font-size: 18px;
+  height: 35px;
+  margin: 5px 10px;
+  width: 90%;
 }
 
 .todo {
