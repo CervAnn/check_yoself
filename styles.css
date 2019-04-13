@@ -22,13 +22,31 @@ span {
   color: #FEC40E;
 }
 
-.navbar__input {
+.navbar__form1--input {
   border-radius: 2%;
   font-size: 15px;
   height: 45px;
   padding: 5px;
-  width: 20%;
-  margin: 0 10px
+  border: 0;
+  width: 70%;
+  display: flex;
+}
+
+.navbar__form1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar__form1--image,
+.sidebar__form2--image {
+  width: 13%;
+  height: 45px;
+  padding: 10px;
+}
+
+.navbar__form1--image {
+  background-color: #c8D3d9;
 }
 
 main {
@@ -81,6 +99,12 @@ label {
 
 .sidebar__form2--button4 {
   margin-top: 25px;
+}
+
+.sidebar__form2--image {
+  background-color: #1F1F3D;
+  filter: invert(.5);
+
 }
 
 .todo {
