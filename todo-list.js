@@ -1,8 +1,8 @@
-class ToDoList{
-  constructor() {
+class ToDoList {
+  constuctor(id, title, tasks) {
     this.id = id;
     this.title = title;
-    this.tasks = [];
+    this.tasks = task || [];
     this.urgent = false;
   }
 
