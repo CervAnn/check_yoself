@@ -70,6 +70,7 @@ li {
   display: inline-flex;
   word-break: break-word;
   margin: 10px 20px;
+  width: 100%;
 }
 
 .sidebar__list--image--delete {
