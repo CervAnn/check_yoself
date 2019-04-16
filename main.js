@@ -63,6 +63,7 @@ function createTask(item) {
 // }
 
 function createTaskInstance() {
+  var 
   var itemInstance = new ToDoList(Date.now(), titleInput.value, taskInput.value);
   taskCollection.push(itemInstance);
   createCard();
