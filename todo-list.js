@@ -7,6 +7,7 @@ class ToDoList {
   }
 
   saveToStorage() {
+  var stringified = JSON.stringify(taskObject);
 
   }
 

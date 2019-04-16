@@ -63,6 +63,7 @@ aside {
 label {
   margin: 0 10px;
   color: lightgrey;
+  width: 100%;
 }
 
 li {
@@ -133,4 +134,39 @@ li {
 
 .todo {
   background-color: #F3F6F7;
+  width: 100%;
+}
+
+div {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black;
+}
+
+.todo__card--header {
+  border-bottom: 1px solid black;
+  height: 30px;
+}
+
+.todo__card--middle {
+  height: 130px;
+}
+
+.todo__card--footer {
+  border-top: 1px solid black;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__card--button--urgent {
+  width: 40px;
+  height: 20px;
+  margin-top: 10px;
+}
+
+.todo__card--button--delete {
+  width: 40px;
+  height: 20px;
+  margin-top: 10px;
 }
