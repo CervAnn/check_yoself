@@ -14,7 +14,7 @@ window.addEventListener('load', loadPage);
 taskInput.addEventListener('input', enableItemButton);
 titleInput.addEventListener('input', enableListButton);
 addItemButton.addEventListener('click', createTask);
-addListButton.addEventListener('click', compileTasks);
+addListButton.addEventListener('click', createTaskInstance);
 ul.addEventListener('click', removeTask);
 
 
@@ -49,23 +49,45 @@ function createTask(item) {
   taskInput.value = "";
 }
 
-function compileTasks(e) {
-  var taskItems = document.querySelectorAll('.sidebar__list--item');
-  if (titleInput.value && taskItems.innerHTML !== "")
-    var listInstance = new toDoList(titleInput.value, tasks)
+// function compileTasks(e) {
+//   var taskItems = document.querySelectorAll('.sidebar__list--item');
+//   if (titleInput.value && taskItems.innerHTML !== "")
+//     var listInstance = new toDoList(titleInput.value, tasks)
 
 
-  var taskItems = document.querySelectorAll('.sidebar__list--item');
-  console.log(taskItems);
+//   var taskItems = document.querySelectorAll('.sidebar__list--item');
+//   console.log(taskItems);
   // for (i = 0; i < taskCollection.length; i++) {
 
   // }
-}
+// }
 
 function createTaskInstance() {
-  var urgent = false;
-  var itemInstance = new ToDoList(Date.now(), titleInput.value, taskInput.value, urgent);
-  tasks.push(itemInstance);
+  var itemInstance = new ToDoList(Date.now(), titleInput.value, taskInput.value);
+  taskCollection.push(itemInstance);
+  createCard();
+}
+
+function createCard() {
+  console.log(true);
+  var listCard = `
+  <div class="todo__card--container">
+    <article class="todo__card--header">
+      <h3 class="todo__card--title">${titleInput.value}</h3>
+    </article>
+    <section class="todo__card--middle">
+      <img/>
+      <p class="todo__card--task">${taskCollection.innerText}</p>
+    </section>
+    <article class="todo__card--footer">
+      <img class="todo__card--button--urgent" src="check-yo-self-icons/urgent.svg"/>
+      <img class="todo__card--button--delete" src="check-yo-self-icons/delete.svg"/>
+    </article>
+  </div>
+  `;
+  cardContainer.insertAdjacentHTML('afterbegin', listCard)
+  titleInput.value = "";
+
 }
 
 function appendTaskList() {
