@@ -137,7 +137,7 @@ li {
   width: 100%;
 }
 
-div {
+.todo__card--container {
   min-height: 280px;
   width: 40%;
   border: 2px solid #C7D3D8;
@@ -156,6 +156,12 @@ h3 {
 
 .todo__card--middle {
   min-height: 190px;
+}
+
+.todo__card--checkbox {
+  width: 20px;
+  margin-left: 15px;
+  margin-top: 12px;
 }
 
 .todo__card--task {

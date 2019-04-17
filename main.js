@@ -7,15 +7,18 @@ var addListButton = document.querySelector(".sidebar__form2--button2");
 var clearButton = document.querySelector(".sidebar__form2--button3");
 var filterButton = document.querySelector(".sidebar__form2--button4");
 var cardContainer = document.querySelector(".todo");
-var taskCollection = [];
+var tasksArray = [];
+// var taskCollection = [];
+// var newTaskList;
+var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Event Listeners
-window.addEventListener('load', loadPage);
-taskInput.addEventListener('input', enableItemButton);
-titleInput.addEventListener('input', enableListButton);
-addItemButton.addEventListener('click', createTask);
-addListButton.addEventListener('click', createTaskInstance);
-ul.addEventListener('click', removeTask);
+// window.addEventListener('load', loadPage);
+// taskInput.addEventListener('input', enableItemButton);
+// titleInput.addEventListener('input', enableListButton);
+addItemButton.addEventListener('click', establishArray);
+addListButton.addEventListener('click', compileItemsToCard);
+ul.addEventListener('click', eraseItem);
 
 
 // Functions
@@ -25,186 +28,75 @@ function loadPage(e) {
   addListButton.disable = true;
 }
 
-function enableItemButton(e) {
-  if (taskInput.value !== "") {
-    addItemButton.disable = false;
-    console.log("yay");
+function establishArray() {
+  if (taskInput.value != "") {
+    var newTask = new Task(taskInput.value);
+    tasksArray.push(newTask);
+    createItem(newTask);
+  } else {
+    return
   }
 }
 
-function enableListButton(e) {
-  if (titleInput.value !== "") {
-    addListButton.disable = false;
-        console.log("yipee");
-  }
-}
-
-function createTask(item) {
+function createItem(item) {
   ul.innerHTML += `
   <li class="sidebar__list--container">
     <img class="sidebar__list--image--delete" src="check-yo-self-icons/delete.svg">
-    <p class="sidebar__list--item" data-id=${Date.now()}>${taskInput.value}</p>
+    <p class="sidebar__list--item" data-id="${item.id}">${taskInput.value}</p>
   </li>
   `;
   taskInput.value = "";
 }
 
-// function compileTasks(e) {
-//   var taskItems = document.querySelectorAll('.sidebar__list--item');
-//   if (titleInput.value && taskItems.innerHTML !== "")
-//     var listInstance = new toDoList(titleInput.value, tasks)
-
-
-//   var taskItems = document.querySelectorAll('.sidebar__list--item');
-//   console.log(taskItems);
-  // for (i = 0; i < taskCollection.length; i++) {
-
-  // }
-// }
-
-function createTaskInstance() {
-  var 
-  var itemInstance = new ToDoList(Date.now(), titleInput.value, taskInput.value);
-  taskCollection.push(itemInstance);
-  createCard();
+function eraseItem(e) {
+var li = document.createElement('li');
+e.target.parentElement.remove(li);
 }
 
-function createCard() {
+
+function compileItemsToCard(e) {
+  if (titleInput.value != '' && ul.innerText != '') {
+    var newTaskList = new TaskCard(titleInput.value, tasksArray);
+    taskCollection.push(newTaskList);
+    console.log("cat");
+    newTaskList.saveToStorage();
+    createCard(newTaskList);
+  }
+}
+
+
+function createCard(newTaskList) {
   console.log(true);
   var listCard = `
-  <div class="todo__card--container">
+  <div class="todo__card--container" data-id=${newTaskList.id}>
     <article class="todo__card--header">
-      <h3 class="todo__card--title">${titleInput.value}</h3>
+      <h3 class="todo__card--title">${newTaskList.title}</h3>
     </article>
     <section class="todo__card--middle">
-      <img/>
-      <p class="todo__card--task">${taskCollection.innerText}</p>
+    ${appendTaskList(newTaskList)}
     </section>
     <article class="todo__card--footer">
       <img class="todo__card--button--urgent" src="check-yo-self-icons/urgent.svg"/>
+      <p class="todo__card--text--urgent">URGENT</p>
       <img class="todo__card--button--delete" src="check-yo-self-icons/delete.svg"/>
+      <p class="todo__card--text--delete">DELETE</p>
     </article>
   </div>
   `;
   cardContainer.insertAdjacentHTML('afterbegin', listCard)
   titleInput.value = "";
-
+  taskItems = [];
 }
 
-function appendTaskList() {
-  console.log("test2");
+function appendTaskList(newTaskList) {
+  var loopTasks = '';
+  for (var i = 0; i < newTaskList.tasks.length; i++) {
+    loopTasks += `
+    <div class="todo__card--middle--container">
+      <img class='todo__card--checkbox' src="check-yo-self-icons/checkbox.svg" 
+      data-id=${newTaskList.tasks[i].id}>
+      <p class="todo__card--checkbox">${newTaskList.tasks[i].item}</p>
+    `
+  } return loopTasks;
 }
 
-function removeTask(e) {
-  e.target.closest('li').remove();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-//create a hidden ul for which we can add an image and text li (item)
-//var createElement
-//var add text to created element (innerText)
-//var add text to created element (innerText
-//add text to the DOM
-
-// function restoreCards() {
-//   var taskObject = JSON.parse(localStorage.getItem("item")) || [];
-// }
-
-
-/* TESTING */
-
-// function loadPage() {
-//   addItemButton.disabled = true;
-//   addListButton.disabled = true;
-// }
-
-// function enableItemButton(e) {
-//   if (taskInput.value !== "") {
-//     addItemButton.disabled = false;
-//   } 
-// }
-
-// function enableListButton(e) {
-
-//   if (titleInput.value !== "") {
-//     addListButton.disabled = false;
-//   }
-// }
-
-
-// function createTask(item) {
-//   var ul = document.querySelector("#sidebar__list");
-//   var li = document.createElement('li');
-//   var deleteItemImage = document.createElement('img');
-//   deleteItemImage.src = "check-yo-self-icons/delete.svg";
-//   deleteItemImage.classList.add('sidebar__list--image--delete');
-//   li.appendChild(deleteItemImage);
-//   li.appendChild(document.createTextNode(taskInput.value));
-//   ul.appendChild(li); 
-//   taskInput.value = "";
-//   deleteItemImage.onclick = eraseItem;
-// }
-
-// function createTaskList(items) {
-//   var urgent = false
-//   var listObject = new ToDoList(Date.now(), titleInput.value, tasks.value, urgent);
-//   console.log(tasks);
-//   // listObject.push(items);
-//   createCard();
-// }
-
-// function createCard() {
-//   console.log(true);
-//   var listCard = `
-//   <div class="todo__card--container">
-//     <article class="todo__card--header">
-//       <h3 class="todo__card--title">${titleInput.value}</h3>
-//     </article>
-//     <section class="todo__card--middle">
-//       <img/>
-//       <p class="todo__card--task">${tasks}</p>
-//     </section>
-//     <article class="todo__card--footer">
-//       <img class="todo__card--button--urgent" src="check-yo-self-icons/urgent.svg"/>
-//       <img class="todo__card--button--delete" src="check-yo-self-icons/delete.svg"/>
-//     </article>
-//   </div>
-//   `;
-//   cardContainer.insertAdjacentHTML('afterbegin', listCard)
-//   titleInput.value = "";
-
-// }
-
-// function eraseItem(e) {
-// e.target.parentElement.remove('li');
-// }
-
-/*
-1. create an object out of the task title and items
-2. push object into an instance with same properties as card
-3. move the object into the appended card
-*/
-
-// function populateCard(titleInput, tasks) {
-//   tasks.forEach(function(item) {
-//     item = 
-//   }
-// }
-
-// function pushTask(task) {
-//   var urgent = false;
-//   var item = new ToDoList(Date.now(), titleInput.value, taskInput.value, urgent);
-//   taskObject.push(item);
-//   item.saveToStorage(taskObject);
-//   createCard(item);
-// }
