@@ -160,13 +160,14 @@ h3 {
 .todo__card--middle {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   min-height: 190px;
 }
 
 .todo__card--middle--container {
-  align-items: baseline;
+  align-items: center;
   display: flex;
+  margin-top: 25px;
 }
 
 .todo__card--checkbox {
