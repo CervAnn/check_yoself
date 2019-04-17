@@ -19,6 +19,7 @@ var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', eraseItem);
+clearButton.addEventListener('click', clearAll);
 
 
 // Functions
@@ -33,9 +34,7 @@ function establishArray() {
     var newTask = new Task(taskInput.value);
     tasksArray.push(newTask);
     createItem(newTask);
-  } else {
-    return
-  }
+  } 
 }
 
 function createItem(item) {
@@ -58,12 +57,19 @@ function compileItemsToCard(e) {
   if (titleInput.value != '' && ul.innerText != '') {
     var newTaskList = new TaskCard(titleInput.value, tasksArray);
     taskCollection.push(newTaskList);
-    console.log("cat");
     newTaskList.saveToStorage();
     createCard(newTaskList);
   }
 }
 
+function clearAll(e) {
+  if (titleInput.value != '' && ul.innerText != '') {
+    taskInput.value = "";
+    titleInput.value = "";
+    taskArray = [];
+    ul.innerText = "";
+  }
+}
 
 function createCard(newTaskList) {
   console.log(true);
@@ -84,8 +90,7 @@ function createCard(newTaskList) {
   </div>
   `;
   cardContainer.insertAdjacentHTML('afterbegin', listCard)
-  titleInput.value = "";
-  taskItems = [];
+  clearAll();
 }
 
 function appendTaskList(newTaskList) {
