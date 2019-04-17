@@ -108,9 +108,9 @@ li {
   width: 77%;
 }
 
+.sidebar__form2--button1,
 .sidebar__form2--button2,
-.sidebar__form2--button3,
-.sidebar__form2--button4 {
+.sidebar__form2--button3 {
   background-color: #1F1F3D;
   border: none;
   color: #ffffff;
@@ -120,11 +120,11 @@ li {
   width: 90%;
 }
 
-.sidebar__form2--button3 {
+.sidebar__form2--button2 {
   margin-bottom: 25px;
 }
 
-.sidebar__form2--button4 {
+.sidebar__form2--button3 {
   margin-top: 25px;
 }
 
