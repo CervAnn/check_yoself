@@ -10,8 +10,8 @@ header {
   background-color: #1F1F3D;
   color: #ffffff;
   display: flex;
-  justify-content: space-between;
   height: 70px;
+  justify-content: space-between;
 }
 
 .navbar__header {
@@ -24,25 +24,25 @@ span {
 
 .navbar__form1--input {
   border-radius: 2%;
+  border: 0;
+  display: flex;
   font-size: 15px;
   height: 45px;
   padding: 5px;
-  border: 0;
   width: 80%;
-  display: flex;
 }
 
 .navbar__form1 {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .navbar__form1--image,
 .sidebar__form2--image {
-  width: 13%;
   height: 45px;
   padding: 10px;
+  width: 13%;
 }
 
 .navbar__form1--image {
@@ -61,23 +61,23 @@ aside {
 }
 
 label {
-  margin: 0 10px;
   color: lightgrey;
+  margin: 0 10px;
   width: 100%;
 }
 
 li {
   color: #ffffff;
   display: inline-flex;
-  word-break: break-word;
   margin: 10px 20px;
   width: 100%;
+  word-break: break-word;
 }
 
 .sidebar__list--image--delete {
   height: 20px;
-  width: 20px;
   margin-right: 5px
+  width: 20px;
 }
 
 .sidebar__form1,
@@ -86,38 +86,38 @@ li {
 }
 
 .sidebar__form2 {
+  align-items: center;
   border-bottom: 2px solid #3C6577;
   display: flex;
-  justify-content: start;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: start;
 }
 
 .sidebar__form1--input,
 .sidebar__form2--input {
-  height: 45px;
-  margin: 5px 10px;
-  width: 90%;
   border-color: #1F1F3D;
   font-size: 20px;
-  vertical-align: middle
+  height: 45px;
+  margin: 5px 10px;
+  vertical-align: middle;
+  width: 90%;
 }
 
 .sidebar__form2--input {
-  width: 77%;
   margin-right: 0;
+  width: 77%;
 }
 
 .sidebar__form2--button2,
 .sidebar__form2--button3,
 .sidebar__form2--button4 {
   background-color: #1F1F3D;
+  border: none;
   color: #ffffff;
   font-size: 18px;
   height: 45px;
   margin: 5px 10px;
   width: 90%;
-  border: none;
 }
 
 .sidebar__form2--button3 {
@@ -134,14 +134,16 @@ li {
 
 .todo {
   background-color: #F3F6F7;
-  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
 }
 
 .todo__card--container {
-  min-height: 280px;
-  width: 40%;
   border: 2px solid #C7D3D8;
+  height: 280px;
   margin: 3%;
+  width: 40%;
 }
 
 .todo__card--header {
@@ -150,23 +152,32 @@ li {
 }
 
 h3 {
-  margin-left: 10px;
   color: #1F1F3D;
+  margin-left: 10px;
+  margin-top: 3px;
 }
 
 .todo__card--middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   min-height: 190px;
 }
 
-.todo__card--checkbox {
-  width: 20px;
-  margin-left: 15px;
-  margin-top: 12px;
+.todo__card--middle--container {
+  align-items: baseline;
+  display: flex;
 }
 
-.todo__card--task {
-  margin-left: 10px;
+.todo__card--checkbox {
+  margin-left: 15px;
+  width: 20px;
+}
+
+.todo__card--text {
+  align-self: flex-end;
   color: #1F1F3D;
+  margin-left: 10px;
 }
 
 .todo__card--footer {
@@ -175,16 +186,18 @@ h3 {
   justify-content: space-between;
 }
 
-.todo__card--button--urgent {
-  width: 40px;
+.todo__card--button--urgent,
+.todo__card--button--delete {
+  color: #3C6577;
   height: 20px;
   margin-top: 10px;
-  color: #3C6577;
+  width: 40px;
 }
 
-.todo__card--button--delete {
-  width: 40px;
-  height: 20px;
-  margin-top: 10px;
-  color: #3C6577;
+.todo__card--text--delete,
+.todo__card--text--urgent {
+  font-size: xx-small;
+  margin-left: 4px;
 }
+
+

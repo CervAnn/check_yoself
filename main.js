@@ -1,25 +1,18 @@
-// Global Variables
 var titleInput = document.querySelector(".sidebar__form1--input");
 var ul = document.querySelector("#sidebar__list");
 var taskInput = document.querySelector(".sidebar__form2--input");
 var addItemButton = document.querySelector(".sidebar__form2--image");
 var addListButton = document.querySelector(".sidebar__form2--button2");
 var clearButton = document.querySelector(".sidebar__form2--button3");
-var filterButton = document.querySelector(".sidebar__form2--button4");
 var cardContainer = document.querySelector(".todo");
 var tasksArray = [];
 var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
-// Event Listeners
 window.addEventListener('load', loadPage);
-
 addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', eraseItem);
 clearButton.addEventListener('click', clearAll);
-
-
-// Functions
 
 function loadPage(e) {
   addItemButton.disabled = true;
@@ -28,7 +21,7 @@ function loadPage(e) {
   restoreTaskMethods();
 }
 
-function establishArray() {
+function establishArray(e) {
   if (taskInput.value != "") {
     var newTask = new Task(taskInput.value);
     tasksArray.push(newTask);
@@ -77,18 +70,22 @@ function createCard(newTaskList) {
     <article class="todo__card--header">
       <h3 class="todo__card--title">${newTaskList.title}</h3>
     </article>
-    <section class="todo__card--middle">
+    <ul class="todo__card--middle">
     ${appendTaskList(newTaskList)}
-    </section>
+    </ul>
     <article class="todo__card--footer">
-      <img class="todo__card--button--urgent" src="check-yo-self-icons/urgent.svg"/>
-      <p class="todo__card--text--urgent">URGENT</p>
-      <img class="todo__card--button--delete" src="check-yo-self-icons/delete.svg"/>
-      <p class="todo__card--text--delete">DELETE</p>
+      <div class="todo__card--buttons--container1">
+        <img class="todo__card--button--urgent" src="check-yo-self-icons/urgent.svg"/>
+        <p class="todo__card--text--urgent">URGENT</p>
+      </div>
+      <div class="todo__card--buttons--container2">
+        <img class="todo__card--button--delete" src="check-yo-self-icons/delete.svg"/>
+        <p class="todo__card--text--delete">DELETE</p>
+      </div>
     </article>
   </div>
   `;
-  cardContainer.insertAdjacentHTML('afterbegin', listCard)
+  cardContainer.insertAdjacentHTML('afterbegin', listCard);
   clearAll();
 }
 
@@ -100,7 +97,8 @@ function appendTaskList(newTaskList) {
       <img class='todo__card--checkbox' src="check-yo-self-icons/checkbox.svg" 
       data-id=${newTaskList.tasks[i].id}>
       <p class="todo__card--checkbox">${newTaskList.tasks[i].item}</p>
-    `
+    </div>
+    `;
   } return loopTasks;
 }
 
@@ -117,15 +115,3 @@ function restoreTaskCards() {
     createCard(list);
   });
 }
-
-function findTaskIndex(card) {
-  var taskId = task.dataset.id;
-  return taskCollection.findIndex(function(task) {
-    return task.id == taskId;
-  });
-}
-
-// function removeTaskCardData(index) {
-//   var ideaIWanttoDelete = ideaCollection[index];
-//   ideaIWanttoDelete.deleteFromStorage(index);
-// }

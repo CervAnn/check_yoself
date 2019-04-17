@@ -6,26 +6,14 @@ class TaskCard {
     this.urgent = false;
   }
     saveToStorage() {
-        var stringified = JSON.stringify(taskCollection);
-        localStorage.setItem('tasks', stringified);
+      var stringified = JSON.stringify(taskCollection);
+      localStorage.setItem('tasks', stringified);
+    }
+
 }
 
-deleteFromStorage() {
-    // listCollection.splice(collectionIndex, 1);
-    // this.saveToStorage(); 
-}
-
-    // updateToDo() {
-
-    // }
-
-    // updateTask() {
-    
-    // }
-}
-
-  class Task {
-    constructor(item) {
+class Task {
+  constructor(item) {
     this.item = item;
     this.done = false;
     this.id = Date.now();
