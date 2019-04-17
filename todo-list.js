@@ -4,22 +4,16 @@ class TaskCard {
     this.title = title;
     this.tasks = tasks;
     this.urgent = false;
-    // this.urgentButton
-    // if (this.urgent === true) {
-    //   return 'check-yo-self-icons/urgent-active.svg';
-    // } else {
-    //   return 'check-yo-self-icons/urgent.svg'
-    // }
   }
-
     saveToStorage() {
-    var stringified = JSON.stringify(taskCollection);
-    localStorage.setItem('tasks', stringified);
-    }
+        var stringified = JSON.stringify(taskCollection);
+        localStorage.setItem('tasks', stringified);
+}
 
-    // deleteFromStorage() {
-
-    // }
+deleteFromStorage() {
+    // listCollection.splice(collectionIndex, 1);
+    // this.saveToStorage(); 
+}
 
     // updateToDo() {
 
@@ -35,12 +29,6 @@ class TaskCard {
     this.item = item;
     this.done = false;
     this.id = Date.now();
-    // this.checkboxButton;
-    // if (this.done === true) {
-    //   return 'check-yo-self-icons/checkbox-active.svg';
-    // } else {
-    //   return 'check-yo-self-icons/checkbox.svg';
-    // }
   }
 }
 

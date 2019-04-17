@@ -8,14 +8,11 @@ var clearButton = document.querySelector(".sidebar__form2--button3");
 var filterButton = document.querySelector(".sidebar__form2--button4");
 var cardContainer = document.querySelector(".todo");
 var tasksArray = [];
-// var taskCollection = [];
-// var newTaskList;
 var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
 // Event Listeners
-// window.addEventListener('load', loadPage);
-// taskInput.addEventListener('input', enableItemButton);
-// titleInput.addEventListener('input', enableListButton);
+window.addEventListener('load', loadPage);
+
 addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', eraseItem);
@@ -27,6 +24,8 @@ clearButton.addEventListener('click', clearAll);
 function loadPage(e) {
   addItemButton.disabled = true;
   addListButton.disable = true;
+  restoreTaskCards();
+  restoreTaskMethods();
 }
 
 function establishArray() {
@@ -105,3 +104,28 @@ function appendTaskList(newTaskList) {
   } return loopTasks;
 }
 
+function restoreTaskMethods() {
+  var newCollection = taskCollection.map(function(list) {
+    list = new TaskCard (list.title, list.tasks);
+    return list;
+  }); 
+  taskCollection = newCollection;
+}
+
+function restoreTaskCards() {
+  taskCollection.forEach(function(list) {
+    createCard(list);
+  });
+}
+
+function findTaskIndex(card) {
+  var taskId = task.dataset.id;
+  return taskCollection.findIndex(function(task) {
+    return task.id == taskId;
+  });
+}
+
+// function removeTaskCardData(index) {
+//   var ideaIWanttoDelete = ideaCollection[index];
+//   ideaIWanttoDelete.deleteFromStorage(index);
+// }
