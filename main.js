@@ -51,6 +51,7 @@ function compileItemsToCard(e) {
     taskCollection.push(newTaskList);
     newTaskList.saveToStorage();
     createCard(newTaskList);
+    clearAll();
   }
 }
 
@@ -58,7 +59,7 @@ function clearAll(e) {
   if (titleInput.value != '' && ul.innerText != '') {
     taskInput.value = "";
     titleInput.value = "";
-    taskArray = [];
+    tasksArray = [];
     ul.innerText = "";
   }
 }
