@@ -5,7 +5,7 @@ var addItemButton = document.querySelector(".sidebar__form2--image");
 var addListButton = document.querySelector(".sidebar__form2--button1");
 var clearButton = document.querySelector(".sidebar__form2--button2");
 var cardContainer = document.querySelector(".todo");
-var deleteButton = document.querySelector(".todo__card--button--delete")
+var deleteButton = document.querySelector(".todo__card--button--delete");
 var tasksArray = [];
 var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -14,6 +14,7 @@ addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', removeTask);
 clearButton.addEventListener('click', clearAll);
+deleteButton.addEventListener('click', removeCard);
 
 function loadPage(e) {
   addItemButton.disabled = true;
@@ -39,14 +40,6 @@ function createItem(item) {
   `;
   taskInput.value = "";
 }
-
-// function eraseItem(e) {
-// var li = document.getElementByTag('li');
-// e.target.parentElement.remove(li);
-// }
-
-// splice item with matching data-id from array
-
 
 function compileItemsToCard(e) {
   if (titleInput.value != '' && ul.innerText != '') {
@@ -128,8 +121,12 @@ function removeTask(e) {
  task.remove();
 }
 
-// function removeList(e) {
-//   var list = e.target.parentNode.parentNode.('')
-// }
+function removeCard(e) {
+  var card = e.target.parentNode.parentNode.parentNode
+  var cardId = parseInt(card.dataset.id);
+  var itemIndex  = taskCollection.findIndex(item => card.id === cardId);
+  taskCollection.splice(itemIndex, 1);
+  card.remove();
+}
 
 
