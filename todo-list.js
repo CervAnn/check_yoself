@@ -1,19 +1,20 @@
 class TaskCard {
-  constructor(title, tasks) {
-    this.id = Date.now();
+  constructor(title, tasks, id, urgent) {
+    this.id = id || Date.now();
     this.title = title;
     this.tasks = tasks;
-    this.urgent = false;
+    this.urgent = urgent || false;
   }
     saveToStorage() {
       var stringified = JSON.stringify(taskCollection);
       localStorage.setItem('tasks', stringified);
     }
-  //   deleteFromStorage() {
-  //     localStorage.remove()
-  //   }
-  // }
-}
+
+    deleteFromStorage(itemIndex) {
+      taskCollection.splice(itemIndex, 1);
+      this.saveToStorage();
+    }
+  }
 
 class Task {
   constructor(item) {
