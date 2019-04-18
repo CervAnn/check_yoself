@@ -5,13 +5,14 @@ var addItemButton = document.querySelector(".sidebar__form2--image");
 var addListButton = document.querySelector(".sidebar__form2--button1");
 var clearButton = document.querySelector(".sidebar__form2--button2");
 var cardContainer = document.querySelector(".todo");
+var deleteButton = document.querySelector(".todo__card--button--delete")
 var tasksArray = [];
 var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
 window.addEventListener('load', loadPage);
 addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
-ul.addEventListener('click', eraseItem);
+ul.addEventListener('click', removeTask);
 clearButton.addEventListener('click', clearAll);
 
 function loadPage(e) {
@@ -31,18 +32,20 @@ function establishArray(e) {
 
 function createItem(item) {
   ul.innerHTML += `
-  <li class="sidebar__list--container">
+  <li class="sidebar__list--container" data-id="${item.id}">
     <img class="sidebar__list--image--delete" src="check-yo-self-icons/delete.svg">
-    <p class="sidebar__list--item" data-id="${item.id}">${taskInput.value}</p>
+    <p class="sidebar__list--item">${taskInput.value}</p>
   </li>
   `;
   taskInput.value = "";
 }
 
-function eraseItem(e) {
-var li = document.createElement('li');
-e.target.parentElement.remove(li);
-}
+// function eraseItem(e) {
+// var li = document.getElementByTag('li');
+// e.target.parentElement.remove(li);
+// }
+
+// splice item with matching data-id from array
 
 
 function compileItemsToCard(e) {
@@ -51,6 +54,7 @@ function compileItemsToCard(e) {
     taskCollection.push(newTaskList);
     newTaskList.saveToStorage();
     createCard(newTaskList);
+    clearAll();
   }
 }
 
@@ -58,7 +62,7 @@ function clearAll(e) {
   if (titleInput.value != '' && ul.innerText != '') {
     taskInput.value = "";
     titleInput.value = "";
-    taskArray = [];
+    tasksArray = [];
     ul.innerText = "";
   }
 }
@@ -115,3 +119,17 @@ function restoreTaskCards() {
     createCard(list);
   });
 }
+
+function removeTask(e) {
+ var task = e.target.closest('li');
+ var taskId = parseInt(task.dataset.id);
+ var itemIndex  = tasksArray.findIndex(item => item.id === taskId);
+ tasksArray.splice(itemIndex, 1);
+ task.remove();
+}
+
+// function removeList(e) {
+//   var list = e.target.parentNode.parentNode.('')
+// }
+
+
