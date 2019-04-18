@@ -14,6 +14,7 @@ addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', removeTask);
 clearButton.addEventListener('click', clearAll);
 cardContainer.addEventListener('click', removeCard);
+cardContainer.addEventListener('click', checkTask);
 
 function loadPage(e) {
   addItemButton.disabled = true;
@@ -91,7 +92,7 @@ function appendTaskList(newTaskList) {
     <div class="todo__card--middle--container">
       <img class='todo__card--checkbox' src="check-yo-self-icons/checkbox.svg" 
       data-id=${newTaskList.tasks[i].id}>
-      <p class="todo__card--checkbox">${newTaskList.tasks[i].item}</p>
+      <p class="todo__card--task">${newTaskList.tasks[i].item}</p>
     </div>
     `;
   } return loopTasks;
@@ -130,10 +131,22 @@ function removeCard(e) {
   }
 }
 
-// function removeCard(e) {
-//   var card = e.target.closest('.todo__card--container')
-//   var cardId = parseInt(card.dataset.id);
-//   var itemIndex  = taskCollection.findIndex(item => card.id === cardId);
-// }
+
+function checkTask(e) {
+  if (e.target.className === "todo__card--checkbox") {
+    var card = e.target.closest(".todo__card--container")
+    var cardId = parseInt(card.dataset.id)
+    var itemIndex = taskCollection.findIndex(item => item.id === cardId);
+    var bigObj = taskCollection[itemIndex];
+    var task = e.target;
+    var taskId = parseInt(task.dataset.id);
+    var taskIndex = taskCollection[itemIndex].tasks.findIndex(item => item.id === taskId);
+    var smallTask = taskCollection[itemIndex].tasks[taskIndex];
+    taskCollection[itemIndex].updateTask(itemIndex, taskIndex);
+  }
+}
+
+
+
 
 
