@@ -5,7 +5,6 @@ var addItemButton = document.querySelector(".sidebar__form2--image");
 var addListButton = document.querySelector(".sidebar__form2--button1");
 var clearButton = document.querySelector(".sidebar__form2--button2");
 var cardContainer = document.querySelector(".todo");
-var deleteButton = document.querySelector(".todo__card--button--delete");
 var tasksArray = [];
 var taskCollection = JSON.parse(localStorage.getItem('tasks')) || [];
 
@@ -14,7 +13,7 @@ addItemButton.addEventListener('click', establishArray);
 addListButton.addEventListener('click', compileItemsToCard);
 ul.addEventListener('click', removeTask);
 clearButton.addEventListener('click', clearAll);
-deleteButton.addEventListener('click', removeCard);
+cardContainer.addEventListener('click', removeCard);
 
 function loadPage(e) {
   addItemButton.disabled = true;
@@ -61,7 +60,6 @@ function clearAll(e) {
 }
 
 function createCard(newTaskList) {
-  console.log(true);
   var listCard = `
   <div class="todo__card--container" data-id=${newTaskList.id}>
     <article class="todo__card--header">
@@ -101,7 +99,7 @@ function appendTaskList(newTaskList) {
 
 function restoreTaskMethods() {
   var newCollection = taskCollection.map(function(list) {
-    list = new TaskCard (list.title, list.tasks);
+    list = new TaskCard (list.title, list.tasks, list.id, list.urgent);
     return list;
   }); 
   taskCollection = newCollection;
@@ -121,12 +119,21 @@ function removeTask(e) {
  task.remove();
 }
 
+
 function removeCard(e) {
-  var card = e.target.parentNode.parentNode.parentNode
-  var cardId = parseInt(card.dataset.id);
-  var itemIndex  = taskCollection.findIndex(item => card.id === cardId);
-  taskCollection.splice(itemIndex, 1);
-  card.remove();
+  if (e.target.className === "todo__card--button--delete") {
+    var card = e.target.closest(".todo__card--container")
+    var cardId = parseInt(card.dataset.id)
+    var itemIndex = taskCollection.findIndex(item => item.id === cardId);
+    taskCollection[itemIndex].deleteFromStorage(itemIndex);
+    card.remove();
+  }
 }
+
+// function removeCard(e) {
+//   var card = e.target.closest('.todo__card--container')
+//   var cardId = parseInt(card.dataset.id);
+//   var itemIndex  = taskCollection.findIndex(item => card.id === cardId);
+// }
 
 
