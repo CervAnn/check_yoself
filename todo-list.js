@@ -14,6 +14,11 @@ class TaskCard {
       taskCollection.splice(itemIndex, 1);
       this.saveToStorage();
     }
+
+    updateToDos(itemIndex, taskIndex) {
+      this[itemIndex].tasks[taskIndex].done = !this[itemIndex].tasks[taskIndex].done;
+      this.saveToStorage();
+    }
   }
 
 class Task {
