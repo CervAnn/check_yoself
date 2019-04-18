@@ -9,8 +9,7 @@ class TaskCard {
       var stringified = JSON.stringify(taskCollection);
       localStorage.setItem('tasks', stringified);
     }
-
-}
+  }
 
 class Task {
   constructor(item) {
